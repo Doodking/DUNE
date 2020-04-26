@@ -8,8 +8,22 @@
             <a class="py-2 d-none d-md-inline-block" href="/shops">CAMEL_MILK</a>
             <a class="py-2 d-none d-md-inline-block" href="/forum">FORUM</a>
             <a class="py-2 d-none d-md-inline-block" href="/support">SUPPORT</a>
-            <a class="py-2 d-none d-md-inline-block" href="/account">ACCOUNT</a>
-            <a class="py-2 d-none d-md-inline-block" href="/login">LOG IN</a>
+            @guest
+                <a class="py-2 d-none d-md-inline-block" href="{{ route('login') }}">{{ strtoupper(__('Login')) }}</a>
+                @if(Route::has('register'))
+                    <a class="py-2 d-none d-md-inline-block" href="{{ route('register') }}">{{ strtoupper(__('Register')) }}</a>
+                @endif
+            @else
+                <a class="py-2 d-none d-md-inline-block" href="/account">{{ strtoupper(Auth::user()->name) }}</a>
+                <a class="py-2 d-none d-md-inline-block" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    {{ strtoupper(__('Logout')) }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            @endguest
         </div>
     </nav>
     {{--<nav class="navbar navbar-expand-lg navbar-light bg-light">

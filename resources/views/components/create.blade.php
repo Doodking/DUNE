@@ -22,11 +22,11 @@
                     <option>Other</option>
                 </select>
             </div>
-            <div class="custom-file">
+            {{--<div class="custom-file">
                 <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
                 <input type="file" class="custom-file-input" name="file" id="validatedCustomFile" multiple>
-                {{--<div class="invalid-feedback">File's options</div>--}}
-            </div>
+                --}}{{--<div class="invalid-feedback">File's options</div>--}}{{--
+            </div>--}}
             <div class="form-group">
                 <label for="exampleFormControlInput1">Name of shop</label>
                 <input type="file" class="form-control" name="image" id="exampleFormControlInput1" placeholder="Name">

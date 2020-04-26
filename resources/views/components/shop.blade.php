@@ -1,5 +1,5 @@
 @section('shop')
-    <div class="card mb-3">
+    {{--<div class="card mb-3">
         <img src="https://content.communicorpuk.com/hs-fs/hubfs/Archive%20images/maccies.png?width=2000&name=maccies.png" width="1000px" height="200px" class="card-img-top" alt="...">
         <div class="card-body" style="text-align: center">
             <h5 class="card-title">MAC SHOP</h5>
@@ -25,4 +25,26 @@
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             <button type="button" class="btn btn-outline-danger">Continue...</button>
         </div>
+    </div>--}}
+    @foreach($shops as $shop)
+        <div class="card mb-3">
+            <img src="{{ asset('storage/images/' . $shop->filename ) }}" width="1000px" height="200px" class="card-img-top" alt="...">
+            <div class="card-body" style="text-align: center">
+                <h4 class="card-title">{{$shop->name}}</h4>
+                <h6 class="card-text mb-5">{{$shop->description}}</h6>
+                <a href="{{'shopsofuser/shopsofuser/' . Auth::user()->id . '/shop/' . $shop->id}}"><button type="button" class="btn btn-outline-danger">Continue...</button></a>
+            </div>
+        </div>
+    @endforeach
+    <div class="collapse" id="collapseExample">
+        @foreach($shops2 as $shop)
+            <div class="card mb-3">
+                <img src="{{ asset('storage/images/' . $shop->filename ) }}" width="1000px" height="200px" class="card-img-top" alt="...">
+                <div class="card-body" style="text-align: center">
+                    <h5 class="card-title">{{$shop->name}}</h5>
+                    <h4 class="card-text">{{$shop->description}}</h4>
+                    <a href="{{'shopsofuser/shopsofuser/' . Auth::user()->id . '/shop/' . $shop->id}}"><button type="button" class="btn btn-outline-danger">Continue...</button></a>
+                </div>
+            </div>
+        @endforeach
     </div>

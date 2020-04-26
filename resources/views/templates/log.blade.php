@@ -37,19 +37,37 @@
 
 <body class="text-center">
 <div class="container">
-    <form class="form-signin mt-5">
+    <form class="form-signin mt-5" method="POST" action="{{ route('login') }}">
         <img class="mb-4" src="https://logos-download.com/wp-content/uploads/2016/06/Playstation_logo_black.png" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <label for="email" class="sr-only">{{ __('E-Mail Address') }}</label>
+        <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email address" value="{{ old('email') }}" required autocomplete="email" autofocus>
+        @error('email')
+        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+        @enderror
+        <label for="password" class="sr-only">{{ __('Password') }}</label>
+        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required autocomplete="current-password">
+        @error('password')
+        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+        @enderror
         <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
+            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+            <label class="form-check-label" for="remember">
+                {{ __('Remember Me') }}
             </label>
         </div>
-        <button class="btn btn-lg btn-danger btn-block" type="submit">Sign in</button>
+        <div>
+            <button class="btn btn-lg btn-danger btn-block" type="submit">{{ __('Login') }}</button>
+            @if (Route::has('password.request'))
+                <a class="btn btn-link" href="{{ route('password.request') }}">
+                    {{ __('Forgot Your Password?') }}
+                </a>
+            @endif
+        </div>
         <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
     </form>
 </div>

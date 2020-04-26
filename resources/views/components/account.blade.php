@@ -3,9 +3,15 @@
         <div class="d-flex align-items-center p-3 my-3 text-black-50 bg-purple rounded shadow-sm">
             <img class="mr-3" src="https://cdn.onlinewebfonts.com/svg/img_314890.png" alt="" width="48" height="48">
             <div class="lh-100">
-                <h6 class="mb-0 text-black lh-100">Username</h6>
-                <p>Your description:</p>
-                <small>Since your date</small>
+                @guest
+                    <h6 class="mb-0 text-black lh-100">Username</h6>
+                    <p>Your description:</p>
+                    <small>Since your date</small>
+                @else
+                    <h6 class="mb-0 text-black lh-100">{{ Auth::user()->name }}</h6>
+                    <p>{{ Auth::user()->email }}</p>
+                    <small>Date of registration: {{ Auth::user()->created_at }}</small>
+                @endguest
             </div>
         </div>
 

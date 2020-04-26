@@ -15,7 +15,9 @@
 @include('components.navbar')
 @include('components.shops')
 <div class="container mt-5">
+    @include('components.storeview.nav')
     @include('components.shop')
+    {{--@include('components.storeview.button')--}}
 </div>
 @include('components.footer')
 </body>
