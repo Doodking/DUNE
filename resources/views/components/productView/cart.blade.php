@@ -16,18 +16,26 @@
                             <h4>
                                 {{$p->description}}
                             </h4>
-                            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Delete from cart</button>
+                            <form action="{{ route('deleteFromCart', $p->id)}}" method="delete">
+                                <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Delete from cart</button>
+                            </form>
                         </div>
                     </div>
                 @endforeach
             @endforeach
         </div>
     </div>
-    <div>
-        <ul class="nav nav-pills nav-fill">
-            <li class="nav-item">
-                <a class="nav-link active" href="/buy/">BUY</a>
-            </li>
-        </ul>
-    </div>
+    @if(count($cart) > 0)
+        <div>
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/buy/">BUY</a>
+                </li>
+            </ul>
+        </div>
+    @else
+        <div class="alert alert-warning mt-3" role="alert" style="text-align: center">
+            Your cart is empty :( Check out our <a href="/shops">market</a> and fill it
+        </div>
+    @endif
 

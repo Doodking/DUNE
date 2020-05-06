@@ -36,11 +36,15 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+            'port' => env('MAIL_PORT', 465),
+            'from' => [
+                'address' => env('address', 'dune05679@gmail.com'),
+                'name' => env('name', 'Example'),
+            ],
+            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+            'username' => env('MAIL_USERNAME', 'dune05679@gmail.com'),
+            'password' => env('MAIL_PASSWORD', '4jzqrtdg'),
             'timeout' => null,
         ],
 
@@ -83,9 +87,11 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('address', 'dune05679@gmail.com'),
+        'name' => env('name', 'Example'),
     ],
+
+    //6e07e4d40ed00d90e87473ac60130e18-65b08458-2b68d119
 
     /*
     |--------------------------------------------------------------------------

@@ -13,8 +13,8 @@
 </head>
 <body>
 @include('components.navbar')
-<div class="container mt-5">
-    @include('components.productView.product')
+<div class="mt-5">
+    @include('components.post.post')
 </div>
 @include('components.footer')
 </body>

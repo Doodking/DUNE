@@ -2,11 +2,16 @@
     <div class="my-3 border-bottom">
         <h3 style="text-align: center">TOP THEMES</h3>
     </div>
-    <div class="alert alert-primary" role="alert">
-        <h3>What if I lost access to my account?</h3>
-        <p>Please describe your problem in more detail below with attached screenshots (if any). Our moderator will contact you within 3 hours and we will try to solve your problem.</p>
+    @foreach($posts as $p)
+    <div class="alert alert-success" role="alert">
+        <h3 class="alert-heading">{{$p->title}}</h3>
+        <strong>{{$p->text}}</strong>
+        <hr>
+        <h6 class="mb-0">Category: {{$p->category}}</h6>
+        <a href="{{'/' . 'forum/post/' . $p->id}}"><button class="btn btn-info mt-0" id="click">continue....</button></a>
     </div>
-    <div class="alert alert-primary" role="alert">
+    @endforeach
+    {{--<div class="alert alert-primary" role="alert">
         <h3>This is a project of Doodking?</h3>
         <p>Yes, I'm the only one trying hard to ensure that this project saw the light, I hope you will appreciate my efforts.</p>
     </div>
@@ -25,24 +30,5 @@
     <div class="alert alert-primary" role="alert">
         <h3>Can DUNE be closed?</h3>
         <p>We think not! After all, the admin is located in a galaxy far, far away, and the servers are on the dark side of the moon.</p>
-    </div>
-    <form>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Theme</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="It's about blablabla....">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Choose category of question</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>Account</option>
-                <option>Work</option>
-                <option>Shop tricking</option>
-                <option>Other</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <button class="btn btn-outline-warning" type="submit" style="text-align: center">SEND!</button>
-    </form>
+    </div>--}}
+

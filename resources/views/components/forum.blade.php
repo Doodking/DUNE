@@ -33,7 +33,47 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="/createatheme"><button type="button" class="btn btn-primary">Click the link to create a store</button></a>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#mx">Click the link to create a store</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="mx" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Create your own post, bruh</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                         <form action="{{route('createTheme')}}" method="post">
+                                 @csrf
+                                 <div class="form-group">
+                                     <label for="exampleFormControlInput1">Title</label>
+                                     <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="It's post about my life and etc.">
+                                 </div>
+                             <div class="form-group">
+                                 <label for="exampleFormControlSelect1">Choose category of question</label>
+                                 <select class="form-control" id="exampleFormControlSelect1" name="category">
+                                     <option>Account</option>
+                                     <option>Work</option>
+                                     <option>Shops</option>
+                                     <option>Games</option>
+                                     <option>IT</option>
+                                     <option>Technology</option>
+                                     <option>Politican</option>
+                                     <option>Other</option>
+                                 </select>
+                             </div>
+                                 <div class="form-group">
+                                     <label for="exampleFormControlTextarea1">Post</label>
+                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3"></textarea>
+                                 </div>
+                                 <button type="submit" class="btn btn-primary">Click the link to create a store</button>
+                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                         </form>
                     </div>
                 </div>
             </div>

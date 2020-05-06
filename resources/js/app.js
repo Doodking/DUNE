@@ -20,6 +20,8 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('message-send', require('./components/MessageSend.vue').default);
+Vue.component('chat-message', require('./components/ChatMessage.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,4 +31,36 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+
+    data: {
+        messages: []
+    },
+
+    created() {
+        this.fetchMessages();
+
+        console.log(window.Pusher);
+        Echo.private('chat')
+            .listen('MessageSent', (e) => {
+                console.log(e);
+                this.messages.push({
+                    message: e.message.message,
+                    user: e.user
+                });
+            });
+    },
+
+    methods: {
+        fetchMessages() {
+            axios.get('/account/chat/create').then(response => {
+                this.messages = response.data;
+            });
+        },
+        addMessage(message) {
+            this.messages.push(message);
+
+            axios.post('/account/chat/create', message).then(response => {});
+        }
+    }
 });
+

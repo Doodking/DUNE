@@ -37,3 +37,39 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="mx" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Create your own post, bruh</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{route('createCommentProduct', [$product->shop_id, $product->id])}}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Comment</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Write</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-5" style="text-align: center">
+            <h4>Comments</h4>
+            <button type="button" class="btn btn-outline-danger my-3" data-toggle="modal" data-target="#mx">
+                write comment
+            </button>
+        </div>
+        <div>
+            @foreach($comm as $c)
+                <div class="alert alert-primary" id="w" role="alert">
+                    {{Auth::user()->name}}/@/{{$c->text}}
+                </div>
+            @endforeach
+        </div>

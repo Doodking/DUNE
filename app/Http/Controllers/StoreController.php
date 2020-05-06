@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Models\Cart;
 use App\Models\Shop;
 use App\Product;
@@ -41,7 +42,8 @@ class StoreController extends Controller
         $product = Product::findOrFail($idofproduct);
         $shop = Shop::findOrFail($id);
         $user = User::findOrFail($shop->user_id);
-        return view('product', ['product' => $product, 'user' => $user]);
+        $comm = Comment::where('product_id', $idofproduct)->get();
+        return view('product', ['product' => $product, 'user' => $user, 'comm' => $comm]);
     }
 
     public function getBuy($id){
@@ -58,6 +60,14 @@ class StoreController extends Controller
         //return dd($products);
     }
 
+    public function delete($id){
+        $cart = Cart::where('product_id', $id)->get();
+        foreach ($cart as $c){
+            $c->delete();
+        }
+        return redirect('/cart/' . Auth::user()->id)->with('success', 'Product had been deleted from your cart');
+    }
+
     public function addToCart($id){
         $cart = new Cart();
         $cart->user_id = Auth::user()->id;
@@ -66,9 +76,5 @@ class StoreController extends Controller
         $cart->product_id = $id;
         $cart->save();
         return redirect('/shopsofuser/shopsofuser/' . Auth::user()->id .  '/shop/' . $shop->id)->with('success', 'Product successfully added to your cart!');
-    }
-
-    public function buy(){
-        return view('buyProducts');
     }
 }

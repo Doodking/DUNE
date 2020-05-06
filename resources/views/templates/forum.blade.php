@@ -16,6 +16,7 @@
 @include('components.forum')
 <div class="container mt-5">
     @include('components.title')
+    @include('components.alerts')
     @include('components.threads')
 </div>
 @include('components.footer')

@@ -13,7 +13,6 @@
 </head>
 <body>
 @include('components.navbar')
-@include('components.navacc')
 <div class="container mt-5">
     @include('components.account')
 </div>
