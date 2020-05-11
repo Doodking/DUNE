@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,11 +23,26 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/account', function () {
-    return view('account');
-})->middleware('auth');
+Route::get('/account', 'AccountController@getMyAccount')->middleware('auth');
+
+Route::get('/account/subscr', 'AccountController@findSubscr')->middleware('auth');
+
+Route::get('/account/subs', 'AccountController@findSubs')->middleware('auth');
+
+Route::post('/account/avatar', 'AccountController@setAvatar')->middleware('auth')->name('setAvatar');
+
+Route::get('/account/search', 'AccountController@get')->middleware('auth');
+
+Route::post('/account/search', 'AccountController@post')->middleware('auth')->name('search');
+
+Route::get('/account/user/{id}', 'AccountController@userget')->middleware('auth');
+
+Route::post('/account/user/{id}', 'SubscriptionController@sub')->middleware('auth')->name('sub');
+Route::post('/account/user/{id}/delete', 'SubscriptionController@unsub')->middleware('auth')->name('unsub');
 
 Route::get('/account/chat', 'ChatController@index')->middleware('auth');
+
+Route::get('account/friends', 'AccountController@friends')->middleware('auth');
 
 //Route::get('/account/chat/create', 'ChatController@post')->middleware('auth')->name('sendMessage');
 Route::get('/account/chat/create', 'ChatController@fetchMessages');
@@ -35,6 +51,8 @@ Route::post('/account/chat/create', 'ChatController@sendMessage');
 Route::get('/support', function () {
     return view('support');
 });
+
+Route::post('/support/send', 'SupportController@send')->middleware('auth')->name('support');
 
 
 Route::get('/shops', 'CamelMarketController@get')->middleware('auth');
@@ -84,6 +102,13 @@ Route::get('/forum', 'PostController@get');
 Route::post('/forum/post', 'PostController@post')->middleware('auth')->name('createTheme');
 
 Route::get('/forum/post/{id}', 'PostController@getPost')->middleware('auth');
+
+Route::post('/forum/post/{id}', 'LikeController@like')->middleware('auth')->name('like');
+Route::post('/forum/post/{id}/unlike', 'LikeController@unlike')->middleware('auth')->name('unlike');
+Route::post('/forum/post/{id}/delete', 'PostController@delete')->middleware('auth')->name('delete');
+Route::post('/forum/post/{id}/report', 'PostController@report')->middleware('auth')->name('report');
+Route::post('/forum/post/{id}/edit', 'PostController@edit')->middleware('auth')->name('edit');
+Route::post('/forum/post/{id}/repost', 'RepostController@repost')->middleware('auth')->name('repost');
 
 Route::post('/forum/post/{id}/createComment', 'CommentController@post')->middleware('auth')->name('createComment');
 

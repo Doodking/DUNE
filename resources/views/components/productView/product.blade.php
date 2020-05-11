@@ -2,7 +2,8 @@
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src="..." class="card-img" alt="...">
+                    {{--<img src="{{ asset('storage/pics/' .  $product->pic) }}" width="100px" height="200px" class="card-img mt-5 rounded-circle" alt="...">--}}
+                    <img src="{{ asset('storage/pics/' .  $product->pic) }}" width="150" height="150" class="rounded-circle" style="margin-left: 22px; margin-top: 22px" alt="">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -67,9 +68,9 @@
             </button>
         </div>
         <div>
-            @foreach($comm as $c)
+            @foreach($comm as $key => $value)
                 <div class="alert alert-primary" id="w" role="alert">
-                    {{Auth::user()->name}}/@/{{$c->text}}
+                    {{$authors[$key]->name}}:   {{$value->text}}
                 </div>
             @endforeach
         </div>

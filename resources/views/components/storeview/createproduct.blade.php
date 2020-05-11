@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput3">Price of product</label>
-                    <input type="text" class="form-control" name="price" id="exampleFormControlInput3" placeholder="Name">
+                    <input type="text" class="form-control" name="price" id="exampleFormControlInput3" placeholder="Price">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Choose category</label>
@@ -28,10 +28,10 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Photo</label>
-                    <input type="file" class="form-control" name="image" id="exampleFormControlInput1" placeholder="Name">
+                    <input type="file" class="form-control" name="image" id="exampleFormControlInput1" placeholder="Pic" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Description of shop</label>
+                    <label for="exampleFormControlTextarea1">Description of product</label>
                     <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 <button class="btn btn-outline-warning" type="submit">Create</button>

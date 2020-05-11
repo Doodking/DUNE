@@ -13,8 +13,8 @@
                     <a class="nav-link" href="/shops">Market</a>
                     <a class="nav-link" href="/shopsofuser/{{Auth::user()->id}}">Shops</a>
                     <a class="nav-link" href="#">Your posts</a>
-                    <a class="nav-link" href="#">Your subscribers</a>
-                    <a class="nav-link" href="#">Your subscriptions</a>
+                    <a class="nav-link" href="/account/subs">Your subscribers</a>
+                    <a class="nav-link" href="/account/subscr">Your subscriptions</a>
                     <a class="nav-link active" href="/account/chat">Chats</a>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                             <p>Your description:</p>
                             <small>Since your date</small>
                         @else
-                            <h6 class="mb-0 text-black lh-100">{{ Auth::user()->name }}</h6>
+                            <h6 class="mb-0 text-black lh-100">{{ Auth::user()->name}}</h6>
                         @endguest
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">Chats</div>
+                                    <div class="panel-heading">Chat</div>
 
                                     <div class="panel-body">
                                         <chat-message :messages="messages"></chat-message>

@@ -26,14 +26,15 @@
         <h3>Can DUNE be closed?</h3>
         <p>We think not! After all, the admin is located in a galaxy far, far away, and the servers are on the dark side of the moon.</p>
     </div>
-    <form>
+    <form action="{{route('support')}}" method="post">
+        @csrf
         <div class="form-group">
             <label for="exampleFormControlInput1">Theme</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="It's about blablabla....">
+            <input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="It's about blablabla....">
         </div>
         <div class="form-group">
-            <label for="exampleFormControlSelect1">Choose category of question</label>
-            <select class="form-control" id="exampleFormControlSelect1">
+            <label for="exampleFormControlSelect1">Choose category of support</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="category">
                 <option>Account</option>
                 <option>Work</option>
                 <option>Shop tricking</option>
@@ -42,7 +43,7 @@
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3"></textarea>
         </div>
         <button class="btn btn-outline-warning" type="submit" style="text-align: center">SEND!</button>
     </form>

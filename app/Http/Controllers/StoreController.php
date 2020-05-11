@@ -9,6 +9,7 @@ use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class StoreController extends Controller
 {
@@ -43,7 +44,11 @@ class StoreController extends Controller
         $shop = Shop::findOrFail($id);
         $user = User::findOrFail($shop->user_id);
         $comm = Comment::where('product_id', $idofproduct)->get();
-        return view('product', ['product' => $product, 'user' => $user, 'comm' => $comm]);
+        $authors = [];
+        foreach ($comm as $c):
+            $authors[] = User::find($c->user_id);
+        endforeach;
+        return view('product', ['product' => $product, 'user' => $user, 'comm' => $comm, 'authors' => $authors]);
     }
 
     public function getBuy($id){
